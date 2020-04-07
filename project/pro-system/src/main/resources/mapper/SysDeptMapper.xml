@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.f.pro.mapper.SysDeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.f.pro.domain.SysDept">
+        <id column="dept_id" property="deptId"/>
+        <result column="name" property="name"/>
+        <result column="sort" property="sort"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="dept_type" property="deptType"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="county" property="county"/>
+        <result column="dept_no" property="deptNo"/>
+    </resultMap>
+
+    <select id="selectSysDeptList" resultMap="BaseResultMap">
+        SELECT
+        d.dept_id,
+        d.dept_id AS deptId,
+        d.NAME,
+        d.sort,
+        d.create_time,
+        d.parent_id,
+        d.province_id,
+        d.city_id,
+        d.county_id,
+        d.dept_type,
+        a.province,
+        b.city,
+        c.county,
+        d.dept_no
+        FROM
+        sys_dept AS d
+        LEFT JOIN dm_province a ON a.PROVINCE_ID = d.province_id
+        LEFT JOIN dm_city b ON b.city_id = d.city_id
+        LEFT JOIN dm_county c ON c.county_id = d.county_id
+        <where>
+            1=1 and d.del_flag = 0
+            <if test="deptIdList != null and deptIdList.size > 0">
+                and d.dept_id in
+                <foreach item="item" collection="deptIdList" separator="," open="(" close=")" index="">
+                    #{item, jdbcType=INTEGER}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeptId" resultType="java.lang.Integer">
+        SELECT dept_id from sys_dept where dept_no = #{deptNo} and del_flag=0 LIMIT 1
+    </select>
+
+    <select id="getDeptNo" resultType="java.lang.String">
+        SELECT dept_no from sys_dept where dept_id = #{deptId} and del_flag=0 LIMIT 1
+    </select>
+
+    <select id="selectDeptOrgList" resultMap="BaseResultMap">
+        SELECT
+        d.dept_id,
+        d.dept_id AS deptId,
+        d.NAME,
+        d.sort,
+        d.create_time,
+        d.parent_id,
+        d.dept_type,
+        d.dept_no
+        FROM
+        sys_dept AS d
+        <where>
+            1=1 and d.del_flag = 0 and d.dept_type != '2'
+            <if test="deptIdList != null and deptIdList.size > 0">
+                and d.dept_id in
+                <foreach item="item" collection="deptIdList" separator="," open="(" close=")" index="">
+                    #{item, jdbcType=INTEGER}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

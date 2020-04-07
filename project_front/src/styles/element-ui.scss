@@ -1,0 +1,216 @@
+//覆盖一些element-ui样式
+
+.wel-contailer .el-row{
+  height:100%;
+}
+
+body .el-table th.gutter{
+  display: table-cell!important;
+}
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+.el-table--border::after, .el-table--group::after, .el-table::before{
+  z-index: 0;
+}
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    width: 60px;
+  }
+}
+
+.el-transfer-panel{
+  width:300px;
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+//暂时性解决dialog 问题 https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  /*设置元素绝对定位*/
+  margin:0 auto !important;
+  position: relative;
+  left:0;
+  right:0;
+  top:50%;
+  width: 960px;
+  transform: translate(0%, -50%);
+  &__header{
+    padding: 20px 20px 10px;
+  }
+}
+.el-dialog--center .el-dialog__body{
+  padding: 10px 20px 20px;
+}
+
+.audit-dialog{
+  .el-dialog__body {
+    text-align: initial;
+    padding: 25px 25px 30px;
+    height: 400px;
+    overflow: auto;
+  }
+}
+
+// .el-dialog--center .el-dialog__body{
+//   height: 550px;
+//   overflow-y: auto;
+// }
+
+.score-dialog{
+  .el-dialog{
+    .el-dialog__body{
+      height:100px;
+    }
+  }
+}
+
+//文章页textarea修改样式
+.article-textarea {
+  textarea {
+    padding-right: 40px;
+    resize: none;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #bfcbd9;
+  }
+}
+
+//element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+//dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+.el-pagination{
+  text-align: center;
+}
+
+.el-select-dropdown{
+  z-index:10000!important;
+}
+.wel-contailer-head{
+  .el{
+    &-select{
+      vertical-align: middle;
+    }
+  }
+}
+.el-col{
+  vertical-align: middle;
+}
+.app-main{
+  .wel-contailer-head,.wel-contailer-main,.table-con{
+    $fontSize18:18px;
+    $height:38px;
+    .el{
+      &-button--primary,&-input{
+        vertical-align: middle;
+      }
+      &-input--medium{
+        .el-input__inner{
+          height:$height;
+          line-height:$height;
+          font-size:16px;
+        }
+      }
+      &-button{
+        font-size:$fontSize18;
+        vertical-align: middle;
+        // 删除按钮样式重写
+        &--danger{
+          background-color: #E70000;
+          &:hover{
+            background-color:#f78989;
+          }
+        }
+      }
+      &-button,&-input,&-input__inner{
+        height:$height;
+      }
+      &-table{
+        font-size: $fontSize18;
+        th {
+          padding: 16px 0;
+          color:#333;
+        }
+        td {
+          padding: 15px 0;
+          color:#666;
+          .cell{
+            .check{
+              cursor: pointer;
+              color: #1E88E5;
+            }
+            .edit{
+              cursor: pointer;
+              color: #FF9800;
+            }
+            .delete{
+              cursor: pointer;
+              color: #E70000;
+            }
+          }
+        }
+        &__body{
+          >tbody{
+            >tr:nth-child(n){
+              background-color: #F8F8F8;
+            }
+            >tr:nth-child(2n){
+              background-color: #E7E7E7;
+            }
+          }
+        }
+      }
+    }
+  }
+}

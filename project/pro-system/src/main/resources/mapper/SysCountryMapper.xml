@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.f.pro.mapper.SysCountryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.f.pro.domain.SysCountry">
+        <id column="ID" property="id"/>
+        <result column="COUNTRY_ID" property="countryId"/>
+        <result column="COUNTRY" property="country"/>
+    </resultMap>
+
+    <select id="getProvinceList" resultType="com.f.pro.vo.AreaVo">
+        SELECT PROVINCE_ID as areaId, PROVINCE as areaName FROM dm_province
+    </select>
+
+    <select id="getCityList" resultType="com.f.pro.vo.AreaVo">
+        SELECT CITY_ID as areaId, CITY as areaName FROM dm_city WHERE PROVINCE_ID=#{provinceId}
+    </select>
+
+    <select id="getCountyList" resultType="com.f.pro.vo.AreaVo">
+        SELECT COUNTY_ID as areaId, COUNTY as areaName FROM dm_county WHERE CITY_ID=#{cityId}
+    </select>
+
+</mapper>

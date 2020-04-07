@@ -1,0 +1,11 @@
+server:
+  port: 8008
+  servlet:
+    context-path: /project
+logging:
+  level:
+    com:
+      f: DEBUG
+spring:
+  profiles:
+    active: dev

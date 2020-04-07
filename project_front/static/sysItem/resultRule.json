@@ -1,0 +1,74 @@
+[
+    {
+        "sysItemId": 31,
+        "sysItemName": "400米疏散物资",
+        "hkItemId": 94,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "400米疏散物资",
+        "sysItemSort": 94
+    },
+    {
+        "sysItemId": 4,
+        "sysItemName": "3000米",
+        "hkItemId": 62,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "3000米",
+        "sysItemSort": 62
+    },
+    {
+        "sysItemId": 1,
+        "sysItemName": "400米",
+        "hkItemId": 63,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "400米",
+        "sysItemSort": 63
+    },
+    {
+        "sysItemId": 5,
+        "sysItemName": "5000米",
+        "hkItemId": 64,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "5000米",
+        "sysItemSort": 64
+    },
+    {
+        "sysItemId": 25,
+        "sysItemName": "10000米",
+        "hkItemId": 65,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "10000米",
+        "sysItemSort": 65
+    },
+    {
+        "sysItemId": 39,
+        "sysItemName": "1500米",
+        "hkItemId": 66,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "1500米",
+        "sysItemSort": 66
+    },
+    {
+        "sysItemId": 26,
+        "sysItemName": "中长跑",
+        "hkItemId": 59,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "中长跑",
+        "sysItemSort": 59
+    },
+    {
+        "sysItemId": 3,
+        "sysItemName": "1000米",
+        "hkItemId": 16,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "1000米",
+        "sysItemSort": 16
+    },
+    {
+        "sysItemId": 2,
+        "sysItemName": "800米",
+        "hkItemId": 17,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "800米",
+        "sysItemSort": 17
+    }
+]

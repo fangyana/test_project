@@ -1,0 +1,442 @@
+[
+    {
+        "sysItemId": 1,
+        "sysItemName": "400米",
+        "hkItemId": 63,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "400米",
+        "sysItemSort": 63
+    },
+    {
+        "sysItemId": 2,
+        "sysItemName": "800米",
+        "hkItemId": 17,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "800米",
+        "sysItemSort": 17
+    },
+    {
+        "sysItemId": 3,
+        "sysItemName": "1000米",
+        "hkItemId": 16,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "1000米",
+        "sysItemSort": 16
+    },
+    {
+        "sysItemId": 4,
+        "sysItemName": "3000米",
+        "hkItemId": 62,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "3000米",
+        "sysItemSort": 62
+    },
+    {
+        "sysItemId": 5,
+        "sysItemName": "5000米",
+        "hkItemId": 64,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "5000米",
+        "sysItemSort": 64
+    },
+    {
+        "sysItemId": 6,
+        "sysItemName": "俯卧撑",
+        "hkItemId": 9,
+        "sysItemUnit": "次",
+        "sysItemIcon": "俯卧撑",
+        "sysItemSort": 9
+    },
+    {
+        "sysItemId": 7,
+        "sysItemName": "仰卧起坐",
+        "hkItemId": 14,
+        "sysItemUnit": "次",
+        "sysItemIcon": "仰卧起坐",
+        "sysItemSort": 14
+    },
+    {
+        "sysItemId": 8,
+        "sysItemName": "跳绳",
+        "hkItemId": 60,
+        "sysItemUnit": "次",
+        "sysItemIcon": "跳绳",
+        "sysItemSort": 60
+    },
+    {
+        "sysItemId": 9,
+        "sysItemName": "立定跳远",
+        "hkItemId": 15,
+        "sysItemUnit": "米",
+        "sysItemIcon": "立定跳远",
+        "sysItemSort": 15
+    },
+    {
+        "sysItemId": 11,
+        "sysItemName": "身高",
+        "hkItemId": 1,
+        "sysItemUnit": "厘米",
+        "sysItemIcon": "身高",
+        "sysItemSort": 1
+    },
+    {
+        "sysItemId": 12,
+        "sysItemName": "肺活量",
+        "hkItemId": 3,
+        "sysItemUnit": "毫升",
+        "sysItemIcon": "肺活量",
+        "sysItemSort": 3
+    },
+    {
+        "sysItemId": 13,
+        "sysItemName": "25米x4",
+        "hkItemId": 20,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "25米x4",
+        "sysItemSort": 20
+    },
+    {
+        "sysItemId": 14,
+        "sysItemName": "25米x8",
+        "hkItemId": 21,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "25米x8",
+        "sysItemSort": 21
+    },
+    {
+        "sysItemId": 15,
+        "sysItemName": "50米x2",
+        "hkItemId": 22,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "50米x2",
+        "sysItemSort": 22
+    },
+    {
+        "sysItemId": 16,
+        "sysItemName": "50米x4",
+        "hkItemId": 23,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "50米x4",
+        "sysItemSort": 23
+    },
+    {
+        "sysItemId": 17,
+        "sysItemName": "10米x4",
+        "hkItemId": 24,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "10米x4",
+        "sysItemSort": 24
+    },
+    {
+        "sysItemId": 18,
+        "sysItemName": "10米x5",
+        "hkItemId": 25,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "10米x5",
+        "sysItemSort": 25
+    },
+    {
+        "sysItemId": 19,
+        "sysItemName": "100米x4",
+        "hkItemId": 26,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "100米x4",
+        "sysItemSort": 26
+    },
+    {
+        "sysItemId": 20,
+        "sysItemName": "20米x5",
+        "hkItemId": 27,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "20米x5",
+        "sysItemSort": 27
+    },
+    {
+        "sysItemId": 21,
+        "sysItemName": "30米x5",
+        "hkItemId": 28,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "30米x5",
+        "sysItemSort": 28
+    },
+    {
+        "sysItemId": 22,
+        "sysItemName": "40米x5",
+        "hkItemId": 29,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "40米x5",
+        "sysItemSort": 29
+    },
+    {
+        "sysItemId": 23,
+        "sysItemName": "50米跑",
+        "hkItemId": 18,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "50米跑",
+        "sysItemSort": 18
+    },
+    {
+        "sysItemId": 24,
+        "sysItemName": "50米x8",
+        "hkItemId": 19,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "50米x8",
+        "sysItemSort": 19
+    },
+    {
+        "sysItemId": 25,
+        "sysItemName": "10000米",
+        "hkItemId": 65,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "10000米",
+        "sysItemSort": 65
+    },
+    {
+        "sysItemId": 26,
+        "sysItemName": "中长跑",
+        "hkItemId": 59,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "中长跑",
+        "sysItemSort": 59
+    },
+    {
+        "sysItemId": 27,
+        "sysItemName": "引体向上",
+        "hkItemId": 68,
+        "sysItemUnit": "次",
+        "sysItemIcon": "引体向上",
+        "sysItemSort": 68
+    },
+    {
+        "sysItemId": 28,
+        "sysItemName": "攀爬",
+        "hkItemId": 88,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "攀爬",
+        "sysItemSort": 88
+    },
+    {
+        "sysItemId": 29,
+        "sysItemName": "双杠臂屈伸",
+        "hkItemId": 86,
+        "sysItemUnit": "次",
+        "sysItemIcon": "双杠臂屈伸",
+        "sysItemSort": 86
+    },
+    {
+        "sysItemId": 30,
+        "sysItemName": "100米负重",
+        "hkItemId": 93,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "100米负重",
+        "sysItemSort": 93
+    },
+    {
+        "sysItemId": 31,
+        "sysItemName": "400米疏散物资",
+        "hkItemId": 94,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "400米疏散物资",
+        "sysItemSort": 94
+    },
+    {
+        "sysItemId": 32,
+        "sysItemName": "100米跑",
+        "hkItemId": 57,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "100米跑",
+        "sysItemSort": 57
+    },
+    {
+        "sysItemId": 33,
+        "sysItemName": "200米跑",
+        "hkItemId": 58,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "200米跑",
+        "sysItemSort": 58
+    },
+    {
+        "sysItemId": 34,
+        "sysItemName": "25米x2",
+        "hkItemId": 67,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "25米x2",
+        "sysItemSort": 67
+    },
+    {
+        "sysItemId": 35,
+        "sysItemName": "负重登楼",
+        "hkItemId": 87,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "负重登楼",
+        "sysItemSort": 87
+    },
+    {
+        "sysItemId": 36,
+        "sysItemName": "百米障碍救助操",
+        "hkItemId": 89,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "百米障碍救助操",
+        "sysItemSort": 89
+    },
+    {
+        "sysItemId": 37,
+        "sysItemName": "体重",
+        "hkItemId": 2,
+        "sysItemUnit": "公斤",
+        "sysItemIcon": "体重",
+        "sysItemSort": 2
+    },
+    {
+        "sysItemId": 38,
+        "sysItemName": "摸高",
+        "hkItemId": 79,
+        "sysItemUnit": "厘米",
+        "sysItemIcon": "摸高",
+        "sysItemSort": 79
+    },
+    {
+        "sysItemId": 39,
+        "sysItemName": "1500米",
+        "hkItemId": 66,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "1500米",
+        "sysItemSort": 66
+    },
+    {
+        "sysItemId": 40,
+        "sysItemName": "引体向上卷身上",
+        "hkItemId": 92,
+        "sysItemUnit": "次",
+        "sysItemIcon": "引体向上卷身上",
+        "sysItemSort": 92
+    },
+    {
+        "sysItemId": 41,
+        "sysItemName": "黑暗搜寻",
+        "hkItemId": 96,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "黑暗搜寻",
+        "sysItemSort": 96
+    },
+    {
+        "sysItemId": 42,
+        "sysItemName": "台阶试验",
+        "hkItemId": 4,
+        "sysItemUnit": "台阶指数",
+        "sysItemIcon": "台阶试验",
+        "sysItemSort": 4
+    },
+    {
+        "sysItemId": 43,
+        "sysItemName": "坐位体前屈",
+        "hkItemId": 5,
+        "sysItemUnit": "厘米",
+        "sysItemIcon": "坐位体前屈",
+        "sysItemSort": 5
+    },
+    {
+        "sysItemId": 44,
+        "sysItemName": "握力",
+        "hkItemId": 6,
+        "sysItemUnit": "公斤",
+        "sysItemIcon": "握力",
+        "sysItemSort": 6
+    },
+    {
+        "sysItemId": 45,
+        "sysItemName": "纵跳",
+        "hkItemId": 7,
+        "sysItemUnit": "厘米",
+        "sysItemIcon": "纵跳",
+        "sysItemSort": 7
+    },
+    {
+        "sysItemId": 46,
+        "sysItemName": "背脊力",
+        "hkItemId": 10,
+        "sysItemUnit": "公斤",
+        "sysItemIcon": "背脊力",
+        "sysItemSort": 10
+    },
+    {
+        "sysItemId": 47,
+        "sysItemName": "闭眼单脚站立",
+        "hkItemId": 11,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "闭眼单脚站立",
+        "sysItemSort": 11
+    },
+    {
+        "sysItemId": 48,
+        "sysItemName": "反应时",
+        "hkItemId": 12,
+        "sysItemUnit": "毫秒",
+        "sysItemIcon": "反应时",
+        "sysItemSort": 12
+    },
+    {
+        "sysItemId": 49,
+        "sysItemName": "屈臂悬垂",
+        "hkItemId": 35,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "屈臂悬垂",
+        "sysItemSort": 35
+    },
+    {
+        "sysItemId": 50,
+        "sysItemName": "掷实心球",
+        "hkItemId": 61,
+        "sysItemUnit": "米",
+        "sysItemIcon": "掷实心球",
+        "sysItemSort": 61
+    },
+    {
+        "sysItemId": 51,
+        "sysItemName": "篮球运球",
+        "hkItemId": 70,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "篮球运球",
+        "sysItemSort": 70
+    },
+    {
+        "sysItemId": 52,
+        "sysItemName": "足球运球",
+        "hkItemId": 71,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "足球运球",
+        "sysItemSort": 71
+    },
+    {
+        "sysItemId": 53,
+        "sysItemName": "排球垫球",
+        "hkItemId": 72,
+        "sysItemUnit": "次",
+        "sysItemIcon": "排球垫球",
+        "sysItemSort": 72
+    },
+    {
+        "sysItemId": 54,
+        "sysItemName": "三级蛙跳",
+        "hkItemId": 76,
+        "sysItemUnit": "米",
+        "sysItemIcon": "三级蛙跳",
+        "sysItemSort": 76
+    },
+    {
+        "sysItemId": 55,
+        "sysItemName": "30米x2蛇形跑",
+        "hkItemId": 84,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "30米x2蛇形跑",
+        "sysItemSort": 84
+    },
+    {
+        "sysItemId": 56,
+        "sysItemName": "拖拽",
+        "hkItemId": 95,
+        "sysItemUnit": "秒",
+        "sysItemIcon": "拖拽",
+        "sysItemSort": 95
+    }
+]

@@ -1,0 +1,77 @@
+# 开发环境
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: ENC()
+#    username: ENC()
+#    password: ENC()
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 30000ms
+        max-idle: 8
+        min-idle: 1
+    timeout: 6000ms
+  mail:
+    host: smtp.qq.com
+    username: ENC(F+SSuP2w34EywET9mD9eOzfKk2/w0AUaj1w+TVNmyj8=)
+    password: ENC(b1a/IYyqK7WL70rlA7JZxmqqoLDY2rtLvX9cNp5YWP0=)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          startttls:
+            enable: true
+            required: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  ftp:
+    userName: ENC(/NJX/Db7yaiTRa7RvFM3MZlNxZJRdIe4)
+    password: ENC(K9mZAJZBDi3lN9reZwZXwPHIp4Vc1cPr)
+    host: 192.168.31.220
+    port: 30
+    projectPath: /project/
+    httpPath: http://192.168.31.220:90/uploads
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.f.pro.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+project:
+  url:
+    address: http://localhost:9508
+
+jwt:
+  header: Authorization
+  tokenHead: Orange
+
+#敏感信息加密
+#加密所需的salt(盐)
+jasypt:
+  encryptor:
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ1
+# 默认加密方式PBEWithMD5AndDES,可以更改为PBEWithMD5AndTripleDES
+# jasypt.encryptor.algorithm= PBEWithMD5AndDES
+
+#生产环境禁用Swagger
+swagger:
+#  host: http://127.0.0.1
+  enable: true
+  ip: http://127.0.0.1:${server.port}${server.servlet.context-path}+/
