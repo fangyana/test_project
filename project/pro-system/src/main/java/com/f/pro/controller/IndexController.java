@@ -10,14 +10,19 @@ import com.f.pro.domain.SysUser;
 import com.f.pro.dto.user.UserDTO;
 import com.f.pro.security.code.img.CaptchaUtil;
 import com.f.pro.security.code.sms.service.SmsCodeService;
+import com.f.pro.security.swagger.PublicApi;
 import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysUserService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
@@ -34,6 +39,7 @@ import java.util.concurrent.TimeUnit;
 
 @Api(tags = "1.后台登录前的接口对接控制器")
 @RestController
+@Validated
 public class IndexController {
 
     @Autowired
@@ -48,7 +54,8 @@ public class IndexController {
     @Value("${project.url.address}")
     private String url;
 
-    @ApiOperation(value = "生成验证码(用于用户登录使用)", notes = "生成验证码")
+//    @ApiOperation(value = "生成验证码(用于用户登录使用)", notes = "生成验证码")
+    @PublicApi(value = "生成验证码(用于用户登录使用)", notes = "生成验证码")
     @ApiImplicitParams(@ApiImplicitParam(paramType = "query", name = "t", value = "t", required = false, dataType = "String"))
     @GetMapping(value = "/captcha.jpg", produces = MediaType.IMAGE_JPEG_VALUE)
     public void captcha(HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -99,7 +106,8 @@ public class IndexController {
         return R.ok(userService.register(userDTO));
     }
 
-    @ApiOperation(value = "用户登录接口", notes = "用户登录")
+//    @ApiOperation(value = "用户登录接口", notes = "用户登录")
+    @PublicApi(value = "用户登录接口", notes = "用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "username", value = "用户名", required = true, dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "password", value = "密码", required = true, dataType = "String"),

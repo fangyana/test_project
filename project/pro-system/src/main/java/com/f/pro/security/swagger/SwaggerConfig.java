@@ -1,4 +1,4 @@
-package com.f.pro;
+package com.f.pro.security.swagger;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +32,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Value("${swagger.ip}")
     private String IP;
 
-/*    // 接口单独传token  ok
+/*
+    // 接口单独传token  ok
     @Bean
     public Docket swaggerSpringMvcPlugin() {
         //=====添加head参数start============================
@@ -53,33 +54,55 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .globalOperationParameters(pars)
                 ;
     }
-    */
+*/
 
-    private ApiInfo apiInfo() {
+    private ApiInfo apiInfo(String desc) {
         return new ApiInfoBuilder()
                 .title("系统后台 APIS")
-                .description("系统后台接口在线测试")
+                .description("系统后台接口在线测试 __ " + desc)
                 .termsOfServiceUrl(IP)
                 .version("1.0.0")
                 .build();
     }
 
     // 全局 token
+    // 分组配置 验证
     @Bean
-    public Docket createApi() {
+    public Docket publicApi() {
+        String groupName = "无需Authorization验证";
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName(groupName)
+                .apiInfo(apiInfo(groupName))
+                .forCodeGeneration(true)
+                .useDefaultResponseMessages(false)
+                .select()
+                // 加了PublicApi注解的类，才生成接口文档
+                .apis(RequestHandlerSelectors.withMethodAnnotation(PublicApi.class))
+                .paths(PathSelectors.any())
+                .build()
+                ;
+    }
+
+    @Bean
+    public Docket defaultApi() {
+        String groupName = "需要Authorization验证";
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName(groupName)
+                .apiInfo(apiInfo(groupName))
                 .genericModelSubstitutes(DeferredResult.class)
                 .forCodeGeneration(true)
                 .useDefaultResponseMessages(false)
-                .apiInfo(apiInfo())
                 // 加了ApiOperation注解的类，才生成接口文档
                 .select().apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.regex("^.*(?<!error)$"))
                 .build()
+                // 权限验证
                 .securitySchemes(securitySchemes())
                 .securitySchemes(securityApiKey())
-                .securityContexts(securityContexts());
+                // 添加锁标记
+                .securityContexts(securityContexts())
+                ;
     }
 
     /**
