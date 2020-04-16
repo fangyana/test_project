@@ -34,7 +34,6 @@
         `user`.email,
         `user`.avatar,
         `user`.dept_id,
-        `user`.dept_id AS deptId,
         `user`.create_time,
         `user`.update_time,
         `user`.del_flag,

@@ -4,21 +4,21 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.f.pro.domain.SysCountry">
-        <id column="ID" property="id"/>
-        <result column="COUNTRY_ID" property="countryId"/>
-        <result column="COUNTRY" property="country"/>
+        <id column="id" property="id"/>
+        <result column="country_id" property="countryId"/>
+        <result column="country" property="country"/>
     </resultMap>
 
     <select id="getProvinceList" resultType="com.f.pro.vo.AreaVo">
-        SELECT PROVINCE_ID as areaId, PROVINCE as areaName FROM dm_province
+        SELECT province_id as areaId, province as areaName FROM sys_province
     </select>
 
     <select id="getCityList" resultType="com.f.pro.vo.AreaVo">
-        SELECT CITY_ID as areaId, CITY as areaName FROM dm_city WHERE PROVINCE_ID=#{provinceId}
+        SELECT city_id as areaId, city as areaName FROM sys_city WHERE province_id=#{provinceId}
     </select>
 
     <select id="getCountyList" resultType="com.f.pro.vo.AreaVo">
-        SELECT COUNTY_ID as areaId, COUNTY as areaName FROM dm_county WHERE CITY_ID=#{cityId}
+        SELECT county_id as areaId, county as areaName FROM sys_county WHERE city_id=#{cityId}
     </select>
 
 </mapper>

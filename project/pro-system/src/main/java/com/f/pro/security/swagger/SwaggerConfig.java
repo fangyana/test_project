@@ -61,6 +61,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .title("系统后台 APIS")
                 .description("系统后台接口在线测试 __ " + desc)
                 .termsOfServiceUrl(IP)
+                .contact(new Contact("fangYN", "", "836456650@qq.com"))
                 .version("1.0.0")
                 .build();
     }

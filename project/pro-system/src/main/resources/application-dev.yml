@@ -75,3 +75,12 @@ swagger:
 #  host: http://127.0.0.1
   enable: true
   ip: http://127.0.0.1:${server.port}${server.servlet.context-path}+/
+
+#极光推送配置信息
+jiguang:
+  # 是否是生产环境 开发环境false，生产环境true
+  isProduct: false
+  # 极光应用的secret
+  masterSecret:
+  #极光应用的appkey
+  appKey:

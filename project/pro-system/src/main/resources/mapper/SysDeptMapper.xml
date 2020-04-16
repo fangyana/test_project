@@ -24,7 +24,6 @@
     <select id="selectSysDeptList" resultMap="BaseResultMap">
         SELECT
         d.dept_id,
-        d.dept_id AS deptId,
         d.NAME,
         d.sort,
         d.create_time,
@@ -39,9 +38,9 @@
         d.dept_no
         FROM
         sys_dept AS d
-        LEFT JOIN dm_province a ON a.PROVINCE_ID = d.province_id
-        LEFT JOIN dm_city b ON b.city_id = d.city_id
-        LEFT JOIN dm_county c ON c.county_id = d.county_id
+        LEFT JOIN sys_province a ON a.province_id = d.province_id
+        LEFT JOIN sys_city b ON b.city_id = d.city_id
+        LEFT JOIN sys_county c ON c.county_id = d.county_id
         <where>
             1=1 and d.del_flag = 0
             <if test="deptIdList != null and deptIdList.size > 0">
@@ -64,7 +63,6 @@
     <select id="selectDeptOrgList" resultMap="BaseResultMap">
         SELECT
         d.dept_id,
-        d.dept_id AS deptId,
         d.NAME,
         d.sort,
         d.create_time,
