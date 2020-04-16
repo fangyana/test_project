@@ -7,6 +7,8 @@ import com.f.pro.common.constant.ProConstant;
 import com.f.pro.common.exception.BaseException;
 import com.f.pro.common.util.R;
 import com.f.pro.domain.SysUser;
+import com.f.pro.dto.user.AddUserDTO;
+import com.f.pro.dto.user.EditUserDTO;
 import com.f.pro.dto.user.UserDTO;
 import com.f.pro.log.annotation.SysLog;
 import com.f.pro.security.util.EmailUtil;
@@ -45,7 +47,7 @@ public class SysUserController {
     @SysLog(descrption = "保存用户包括角色和部门")
     @PostMapping
     @PreAuthorize("hasAuthority('sys:user:add')")
-    public R insert(UserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
+    public R insert(AddUserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
         return R.ok(userService.insertUser(userDto, file));
     }
 
@@ -75,7 +77,7 @@ public class SysUserController {
     @SysLog(descrption = "更新用户包括角色和部门")
     @PutMapping
     @PreAuthorize("hasAuthority('sys:user:update')")
-    public R update(UserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
+    public R update(EditUserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
         return R.ok(userService.updateUser(userDto, file));
     }
 
@@ -139,12 +141,10 @@ public class SysUserController {
     public R updatePass(@RequestParam String oldPass, @RequestParam String newPass) {
         // 校验密码流程
         SysUser sysUser = userService.findSecurityUserByUser(new SysUser().setUsername(SecurityUtil.getUser().getUsername()));
-        if (!ProUtil.validatePass(oldPass, sysUser.getPassword())) {
+        if (!ProUtil.validatePass(oldPass, sysUser.getPassword()))
             throw new BaseException("原密码错误");
-        }
-        if (StrUtil.equals(oldPass, newPass)) {
+        if (StrUtil.equals(oldPass, newPass))
             throw new BaseException("新密码不能与旧密码相同");
-        }
         // 修改密码流程
         SysUser user = new SysUser();
         user.setUserId(sysUser.getUserId());
@@ -192,17 +192,14 @@ public class SysUserController {
     public R updateEmail(@RequestParam String mail, @RequestParam String code, @RequestParam String pass, HttpServletRequest request) {
         // 校验验证码流程
         String cCode = (String) request.getSession().getAttribute(ProConstant.RESET_MAIL);
-        if (ObjectUtil.isNull(cCode)) {
+        if (ObjectUtil.isNull(cCode))
             throw new BaseException("验证码已过期");
-        }
-        if (!StrUtil.equals(code.toLowerCase(), cCode)) {
+        if (!StrUtil.equals(code.toLowerCase(), cCode))
             throw new BaseException("验证码错误");
-        }
         // 校验密码流程
         SysUser sysUser = userService.findSecurityUserByUser(new SysUser().setUsername(SecurityUtil.getUser().getUsername()));
-        if (!ProUtil.validatePass(pass, sysUser.getPassword())) {
+        if (!ProUtil.validatePass(pass, sysUser.getPassword()))
             throw new BaseException("密码错误");
-        }
         // 修改邮箱流程
         SysUser user = new SysUser();
         user.setUserId(sysUser.getUserId());

@@ -7,7 +7,7 @@ import com.f.pro.common.exception.ValidateCodeException;
 import com.f.pro.common.util.R;
 import com.f.pro.domain.SysRole;
 import com.f.pro.domain.SysUser;
-import com.f.pro.dto.user.UserDTO;
+import com.f.pro.dto.user.RegisterUserDTO;
 import com.f.pro.security.code.img.CaptchaUtil;
 import com.f.pro.security.code.sms.service.SmsCodeService;
 import com.f.pro.security.swagger.PublicApi;
@@ -95,7 +95,7 @@ public class IndexController {
 
 
     @PostMapping("/register")
-    public R register(@RequestBody UserDTO userDTO) {
+    public R register(@RequestBody RegisterUserDTO userDTO) {
         Object redisCode = redisTemplate.opsForValue().get(userDTO.getPhone());
         if (ObjectUtil.isNull(redisCode)) {
             throw new ValidateCodeException("验证码已失效");

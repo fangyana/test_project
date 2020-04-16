@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.f.pro.domain.SysUser;
+import com.f.pro.dto.user.AddUserDTO;
+import com.f.pro.dto.user.EditUserDTO;
+import com.f.pro.dto.user.RegisterUserDTO;
 import com.f.pro.dto.user.UserDTO;
 import com.f.pro.vo.device.LoginVo;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +30,7 @@ public interface ISysUserService extends IService<SysUser> {
      * @param userDto
      * @return
      */
-    boolean insertUser(UserDTO userDto, MultipartFile file);
+    boolean insertUser(AddUserDTO userDto, MultipartFile file);
 
     /**
      * 更新用户以及角色部门等信息
@@ -35,7 +38,7 @@ public interface ISysUserService extends IService<SysUser> {
      * @param userDto
      * @return
      */
-    boolean updateUser(UserDTO userDto, MultipartFile file);
+    boolean updateUser(EditUserDTO userDto, MultipartFile file);
 
     /**
      * 删除用户信息
@@ -92,7 +95,7 @@ public interface ISysUserService extends IService<SysUser> {
      *
      * @return
      */
-    boolean register(UserDTO userDTO);
+    boolean register(RegisterUserDTO userDTO);
 
     /**
      * 修改用户信息

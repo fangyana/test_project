@@ -1,8 +1,12 @@
 package com.f.pro.dto.user;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.sql.Date;
 
 /**
  * @Author: FangYN
@@ -20,4 +24,7 @@ public class ImportUserExcelDto {
     private String sex;
     @ExcelProperty(value = {"头像"})
     private String avatar;
+    @ApiModelProperty(value = "生日,格式yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date birthday;
 }

@@ -1,32 +1,26 @@
 package com.f.pro.dto.user;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @Author: FangYN
+ * @Date: 2020/4/16
+ * @Description: 分页接口查询
+ */
 @ApiModel
 @Data
 public class UserDTO implements Serializable {
-//    @ApiModelProperty(value = "查询日期,格式yyyy-MM-dd")
-//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Integer userId;
+    @ApiModelProperty(value = "登录名")
     private String username;
+    @ApiModelProperty(value = "真实名称")
     private String realName;
-    private String password;
+    @ApiModelProperty(value = "所属机构id")
     private Integer deptId;
-    private Integer jobId;
-    private String phone;
-    private String email;
-    private String avatar;
-    private String lockFlag;
-    private String delFlag;
-    private List<Integer> roleList;
+    @ApiModelProperty(value = "参数不用传")
     private List<Integer> deptList;
-    /**
-     * 新密码
-     */
-    private String newPassword;
-    private String smsCode;
 }

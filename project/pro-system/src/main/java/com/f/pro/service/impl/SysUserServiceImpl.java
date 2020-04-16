@@ -15,6 +15,9 @@ import com.f.pro.data.datascope.DataScope;
 import com.f.pro.domain.SysDept;
 import com.f.pro.domain.SysUser;
 import com.f.pro.domain.SysUserRole;
+import com.f.pro.dto.user.AddUserDTO;
+import com.f.pro.dto.user.EditUserDTO;
+import com.f.pro.dto.user.RegisterUserDTO;
 import com.f.pro.dto.user.UserDTO;
 import com.f.pro.mapper.SysUserMapper;
 import com.f.pro.security.domaim.ProSecurityUser;
@@ -66,7 +69,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean insertUser(UserDTO userDto, MultipartFile file) {
+    public boolean insertUser(AddUserDTO userDto, MultipartFile file) {
         if (file != null) userDto.setAvatar(saveAvatar(file));
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(userDto, sysUser);
@@ -88,7 +91,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean updateUser(UserDTO userDto, MultipartFile file) {
+    public boolean updateUser(EditUserDTO userDto, MultipartFile file) {
         if (file != null) userDto.setAvatar(saveAvatar(file));
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(userDto, sysUser);
@@ -209,25 +212,21 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean register(UserDTO userDTO) {
+    public boolean register(RegisterUserDTO userDTO) {
         // 查询用户名是否存在
         SysUser byUserInfoName = findSecurityUser(userDTO.getUsername());
-        if (ObjectUtil.isNotNull(byUserInfoName)) {
+        if (ObjectUtil.isNotNull(byUserInfoName))
             throw new BaseException("账户名已被注册");
-        }
         SysUser securityUser = findSecurityUser(userDTO.getPhone());
-        if (ObjectUtil.isNotNull(securityUser)) {
+        if (ObjectUtil.isNotNull(securityUser))
             throw new BaseException("手机号已被注册");
-        }
+        // todo 注册部分信息暂时写死
         userDTO.setDeptId(6);
         userDTO.setJobId(4);
-        userDTO.setLockFlag("0");
         SysUser sysUser = new SysUser();
-        // 对象拷贝
-        BeanUtil.copyProperties(userDTO, sysUser);
-        // 加密后的密码
-        sysUser.setPassword(ProUtil.encode(userDTO.getPassword()));
-        baseMapper.insertUser(sysUser);
+        BeanUtil.copyProperties(userDTO, sysUser);// 对象拷贝
+        sysUser.setPassword(ProUtil.encode(userDTO.getPassword()));// 加密后的密码
+        this.save(sysUser);
         SysUserRole sysUserRole = new SysUserRole();
         sysUserRole.setRoleId(14);
         sysUserRole.setUserId(sysUser.getUserId());
