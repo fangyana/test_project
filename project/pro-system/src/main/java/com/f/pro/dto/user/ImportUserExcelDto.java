@@ -2,6 +2,7 @@ package com.f.pro.dto.user;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import java.sql.Date;
  * @Date: 2020/4/3
  * @Description: 批量上传
  */
+@ApiModel
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ImportUserExcelDto {

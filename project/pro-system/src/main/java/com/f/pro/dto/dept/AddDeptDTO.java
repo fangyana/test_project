@@ -1,5 +1,6 @@
 package com.f.pro.dto.dept;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,6 +10,7 @@ import lombok.EqualsAndHashCode;
  * @Date: 2020/4/3
  * @Description:
  */
+@ApiModel
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class AddDeptDTO {

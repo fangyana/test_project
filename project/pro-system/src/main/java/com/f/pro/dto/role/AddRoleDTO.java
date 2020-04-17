@@ -1,12 +1,14 @@
 package com.f.pro.dto.role;
 
 import com.f.pro.domain.SysRoleMenu;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
+@ApiModel
 @Data
 public class AddRoleDTO implements Serializable {
     private static final long serialVersionUID = 1L;

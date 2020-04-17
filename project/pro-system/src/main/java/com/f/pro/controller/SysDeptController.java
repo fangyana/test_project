@@ -8,6 +8,7 @@ import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysDeptService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class SysDeptController {
     @SysLog(descrption = "保存部门信息")
     @PostMapping
     @PreAuthorize("hasAuthority('sys:dept:add')")
-    public R save(@RequestBody AddDeptDTO dto) {
+    public R save(@RequestBody @ApiParam(name = "部门对象", value = "传入json格式", required = true) AddDeptDTO dto) {
         return R.ok(deptService.insert(dto));
     }
 
@@ -45,7 +46,7 @@ public class SysDeptController {
     @SysLog(descrption = "更新部门信息")
     @PutMapping
     @PreAuthorize("hasAuthority('sys:dept:update')")
-    public R update(@RequestBody EditDeptDTO dto) {
+    public R update(@RequestBody @ApiParam(name = "部门对象", value = "传入json格式", required = true) EditDeptDTO dto) {
         return R.ok(deptService.updateDeptById(dto));
     }
 

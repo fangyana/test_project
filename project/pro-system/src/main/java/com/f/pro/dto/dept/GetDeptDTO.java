@@ -1,5 +1,6 @@
 package com.f.pro.dto.dept;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @Description
  * @Date 2020/03/23
  */
+@ApiModel
 @Data
 public class GetDeptDTO implements Serializable {
 

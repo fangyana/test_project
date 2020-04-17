@@ -1,16 +1,13 @@
 package com.f.pro.config;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @Author: FangYN
  * @Date: 2020/4/17
  * @Description: Controller中方法接收多个JSON对象
  */
-@Target(ElementType.PARAMETER)
+@Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MultiRequestBody {
     /**

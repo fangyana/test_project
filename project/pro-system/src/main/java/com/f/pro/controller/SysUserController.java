@@ -15,10 +15,7 @@ import com.f.pro.security.util.EmailUtil;
 import com.f.pro.security.util.ProUtil;
 import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +44,7 @@ public class SysUserController {
     @SysLog(descrption = "保存用户包括角色和部门")
     @PostMapping
     @PreAuthorize("hasAuthority('sys:user:add')")
-    public R insert(AddUserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
+    public R insert(AddUserDTO userDto, @RequestParam(value = "file", required = false) @ApiParam(name = "用户头像", value = "传入file格式") MultipartFile file) {
         return R.ok(userService.insertUser(userDto, file));
     }
 
@@ -77,7 +74,7 @@ public class SysUserController {
     @SysLog(descrption = "更新用户包括角色和部门")
     @PutMapping
     @PreAuthorize("hasAuthority('sys:user:update')")
-    public R update(EditUserDTO userDto, @RequestParam(value = "file", required = false) MultipartFile file) {
+    public R update(EditUserDTO userDto, @RequestParam(value = "file", required = false) @ApiParam(name = "用户头像", value = "传入file格式") MultipartFile file) {
         return R.ok(userService.updateUser(userDto, file));
     }
 
