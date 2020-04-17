@@ -1,4 +1,4 @@
-package com.f.pro.security.swagger;
+package com.f.pro.swagger;
 
 import io.swagger.annotations.Authorization;
 import io.swagger.annotations.Extension;

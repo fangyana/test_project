@@ -32,7 +32,6 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     @Autowired
     private ISysUserService userService;
 
-
     @Override
     public List<SysDept> selectDeptList() {
 //        List<SysDept> deptList = baseMapper.selectList(Wrappers.<SysDept>lambdaQuery().select(SysDept::getDeptId, SysDept::getName, SysDept::getParentId, SysDept::getSort, St::getCreateTime));

@@ -91,7 +91,7 @@ public class ProSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 过滤请求
                 .authorizeRequests()
                 // 对于登录login 图标 要允许匿名访问
-                .antMatchers("/login/**", "/mobile/login/**", "/favicon.ico", "/socialSignUp", "/bind", "/register/**", "/device/**"
+                .antMatchers("/login/**", "/mobile/login/**", "/favicon.ico", "/socialSignUp", "/bind", "/register/**", "/app/**"
                         // 整合swagger在线测试/文档自动生成效果
                         , "/swagger-resources/configuration/ui",//用来获取支持的动作
                         "/swagger-resources",//用来获取api-docs的URI

@@ -1,7 +1,7 @@
 package com.f.pro.data.strategy;
 
 import com.f.pro.data.enums.DataScopeTypeEnum;
-import com.f.pro.dto.role.RoleDTO;
+import com.f.pro.dto.role.AddRoleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class DataScopeContext {
         strategyMap.forEach(this.strategyMap::put);
     }
 
-    public List<Integer> getDeptIdsForDataScope(RoleDTO roleDto, Integer type) {
+    public List<Integer> getDeptIdsForDataScope(AddRoleDTO roleDto, Integer type) {
         return strategyMap.get(String.valueOf(type)).getDeptIds(roleDto, DataScopeTypeEnum.valueOf(type));
     }
 }

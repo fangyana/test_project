@@ -1,9 +1,12 @@
 package com.f.pro.controller;
 
 import com.f.pro.common.util.R;
+import com.f.pro.config.MultiRequestBody;
 import com.f.pro.domain.SysUser;
-import com.f.pro.security.swagger.PublicApi;
+import com.f.pro.dto.dept.GetDeptDTO;
+import com.f.pro.dto.user.UserDTO;
 import com.f.pro.service.ISysUserService;
+import com.f.pro.swagger.PublicApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,9 +21,9 @@ import java.util.List;
  * @Description: 设备对接入口
  */
 @RestController
-@RequestMapping("/device")
+@RequestMapping("/app")
 @Api(tags = "0.设备接口对接控制器")
-public class DeviceController {
+public class AppController {
     @Autowired
     private ISysUserService userService;
 
@@ -43,11 +46,28 @@ public class DeviceController {
     }
 
 
-//    @ApiOperation(value = "设备同步批量上传数据", notes = "设备同步批量上传数据")
+    //    @ApiOperation(value = "设备同步批量上传数据", notes = "设备同步批量上传数据")
     @PublicApi(value = "设备同步批量上传数据", notes = "设备同步批量上传数据")
     @ApiImplicitParam(paramType = "path", name = "deviceNo", value = "设备号", required = true, dataType = "String")
     @PostMapping("syncUpload/{deviceNo}")
     public R syncUpload(@RequestBody List<SysUser> dtoList, @PathVariable("deviceNo") String deviceNo) {
+        return R.ok();
+    }
+
+
+    @PublicApi(value = "测试接口", notes = "测试接口")
+    @PostMapping("test")
+    public R test(@RequestBody UserDTO userList, GetDeptDTO deptList) {
+        System.out.println(userList);
+        System.out.println(deptList);
+        return R.ok();
+    }
+
+    @PublicApi(value = "测试接口", notes = "测试接口")
+    @PostMapping("test1")
+    public R test1(@MultiRequestBody UserDTO userList, @MultiRequestBody GetDeptDTO deptList) {
+        System.out.println(userList);
+        System.out.println(deptList);
         return R.ok();
     }
 }

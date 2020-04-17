@@ -10,7 +10,8 @@ import com.f.pro.domain.SysMenu;
 import com.f.pro.domain.SysRole;
 import com.f.pro.domain.SysRoleDept;
 import com.f.pro.domain.SysRoleMenu;
-import com.f.pro.dto.role.RoleDTO;
+import com.f.pro.dto.role.AddRoleDTO;
+import com.f.pro.dto.role.EditRoleDTO;
 import com.f.pro.mapper.SysRoleMapper;
 import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysRoleDeptService;
@@ -32,29 +33,25 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Resource
     private ISysRoleMenuService roleMenuService;
-
     @Resource
     private ISysRoleDeptService roleDeptService;
-
     @Autowired
     private DataScopeContext dataScopeContext;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean saveRoleMenu(RoleDTO dto) {
+    public boolean saveRoleMenu(AddRoleDTO dto) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(dto, sysRole);
         sysRole.setCreateBy(SecurityUtil.getUser().getUserId().toString());
         // 根据数据权限范围查询部门ids
-        List<Integer> ids = dataScopeContext.getDeptIdsForDataScope(dto, dto.getDsType());
-
         StringJoiner dsScope = new StringJoiner(",");
-        ids.forEach(integer -> {
-            dsScope.add(Integer.toString(integer));
-        });
+        List<Integer> ids = dataScopeContext.getDeptIdsForDataScope(dto, dto.getDsType());
+        ids.forEach(integer -> dsScope.add(Integer.toString(integer)));
         sysRole.setDsScope(dsScope.toString());
         sysRole.setCreateBy(SecurityUtil.getUser().getUserId().toString());
         baseMapper.insertRole(sysRole);
+
         Integer roleId = sysRole.getRoleId();
         //维护角色菜单
         List<SysRoleMenu> roleMenus = dto.getRoleMenus();
@@ -69,68 +66,60 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         }
         // 维护角色部门权限
         // 根据数据权限范围查询部门ids
-        if (CollectionUtil.isNotEmpty(ids)) {
-            List<SysRoleDept> roleDepts = ids.stream().map(integer -> {
-                SysRoleDept sysRoleDept = new SysRoleDept();
-                sysRoleDept.setDeptId(integer);
-                sysRoleDept.setRoleId(roleId);
-                return sysRoleDept;
-            }).collect(Collectors.toList());
-
-            roleDeptService.saveBatch(roleDepts);
-        }
+        this.saveRoleAndDeptId(ids, roleId);
         return true;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean updateRoleMenu(RoleDTO dto) {
+    public boolean updateRoleMenu(EditRoleDTO dto) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(dto, sysRole);
-
-        List<SysRoleMenu> roleMenus = dto.getRoleMenus();
+        // 移除原有绑定关系
         roleMenuService.remove(Wrappers.<SysRoleMenu>query().lambda().eq(SysRoleMenu::getRoleId, sysRole.getRoleId()));
         roleDeptService.remove(Wrappers.<SysRoleDept>query().lambda().eq(SysRoleDept::getRoleId, sysRole.getRoleId()));
-
-        if (CollectionUtil.isNotEmpty(roleMenus)) {
+        // 保存新的角色菜单信息
+        List<SysRoleMenu> roleMenus = dto.getRoleMenus();
+        if (CollectionUtil.isNotEmpty(roleMenus))
             roleMenuService.saveBatch(roleMenus);
-        }
-        // 根据数据权限范围查询部门ids
-        List<Integer> ids = dataScopeContext.getDeptIdsForDataScope(dto, dto.getDsType());
 
+        // 根据数据权限范围查询部门ids
         StringJoiner dsScope = new StringJoiner(",");
-        ids.forEach(integer -> {
-            dsScope.add(Integer.toString(integer));
-        });
-        if (CollectionUtil.isNotEmpty(ids)) {
-            List<SysRoleDept> roleDepts = ids.stream().map(integer -> {
-                SysRoleDept sysRoleDept = new SysRoleDept();
-                sysRoleDept.setDeptId(integer);
-                sysRoleDept.setRoleId(dto.getRoleId());
-                return sysRoleDept;
-            }).collect(Collectors.toList());
-            roleDeptService.saveBatch(roleDepts);
-        }
+        List<Integer> ids = dataScopeContext.getDeptIdsForDataScope(dto, dto.getDsType());
+        ids.forEach(integer -> dsScope.add(Integer.toString(integer)));
+        this.saveRoleAndDeptId(ids, dto.getRoleId());
         sysRole.setDsScope(dsScope.toString());
         baseMapper.updateById(sysRole);
         return true;
+    }
+
+    // 保存角色和角色拥有的机构关联表信息
+    private void saveRoleAndDeptId(List<Integer> deptIdList, Integer roleId) {
+        if (CollectionUtil.isEmpty(deptIdList)) return;
+        List<SysRoleDept> roleDeptList = deptIdList.stream().map(integer -> {
+            SysRoleDept sysRoleDept = new SysRoleDept();
+            sysRoleDept.setDeptId(integer);
+            sysRoleDept.setRoleId(roleId);
+            return sysRoleDept;
+        }).collect(Collectors.toList());
+        roleDeptService.saveBatch(roleDeptList);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeById(Serializable id) {
         // 判断角色是否被用户引用
-        if (baseMapper.isUserCiteRole(id.hashCode())) {
+        if (baseMapper.isUserCiteRole(id.hashCode())) {// 逻辑删除
             SysRole sysRole = new SysRole();
             sysRole.setRoleId(id.hashCode());
             sysRole.setDelFlag("1");
             int i = baseMapper.updateById(sysRole);
             return i == 0 ? false : true;
-        } else {
-            roleMenuService.remove(Wrappers.<SysRoleMenu>query().lambda().eq(SysRoleMenu::getRoleId, id));
-            roleDeptService.remove(Wrappers.<SysRoleDept>query().lambda().eq(SysRoleDept::getRoleId, id));
-            return super.removeById(id);
         }
+        // 物理删除
+        roleMenuService.remove(Wrappers.<SysRoleMenu>query().lambda().eq(SysRoleMenu::getRoleId, id));
+        roleDeptService.remove(Wrappers.<SysRoleDept>query().lambda().eq(SysRoleDept::getRoleId, id));
+        return super.removeById(id);
     }
 
     @Override

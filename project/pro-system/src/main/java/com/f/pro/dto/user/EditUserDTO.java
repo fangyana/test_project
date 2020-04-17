@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @Author: FangYN
@@ -14,27 +13,11 @@ import java.util.List;
  */
 @ApiModel
 @Data
-public class EditUserDTO implements Serializable {
+public class EditUserDTO extends AddUserDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty(value = "用户id", required = true)
     private Integer userId;
-    @ApiModelProperty(value = "登录名", required = true)
-    private String username;
-    @ApiModelProperty(value = "真实名称")
-    private String realName;
-    @ApiModelProperty(value = "密码，默认为123456")
+    @ApiModelProperty(value = "密码")
     private String password;
-    @ApiModelProperty(value = "所属机构id", required = true)
-    private Integer deptId;
-    @ApiModelProperty(value = "所在岗位id")
-    private Integer jobId;
-    @ApiModelProperty(value = "手机号")
-    private String phone;
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-    @ApiModelProperty(value = "头像url")
-    private String avatar;
-    @ApiModelProperty(value = "是否锁定账户 0-正常，1-锁定")
-    private String lockFlag;
-    @ApiModelProperty(value = "拥有的角色id数组")
-    private List<Integer> roleList;
 }

@@ -12,7 +12,7 @@ const whiteList = ['/login', '/achievements', '/achievements/personal', '/achiev
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
-    document.title = '足球门--' + (to.meta.title || '首页')
+    document.title = '后台管理系统--' + (to.meta.title || '首页')
   }
   NProgress.start()
   if (getToken()) {

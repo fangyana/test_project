@@ -1,7 +1,8 @@
 package com.f.pro.controller;
 
 import com.f.pro.common.util.R;
-import com.f.pro.dto.role.RoleDTO;
+import com.f.pro.dto.role.AddRoleDTO;
+import com.f.pro.dto.role.EditRoleDTO;
 import com.f.pro.log.annotation.SysLog;
 import com.f.pro.service.ISysRoleService;
 import io.swagger.annotations.Api;
@@ -28,11 +29,11 @@ public class SysRoleController {
         return R.ok(roleService.selectRoleList(roleName));
     }
 
-    @ApiOperation(value = "保存角色以及菜单权限", notes = "保存角色以及菜单权限")
+    @ApiOperation(value = "保存角色以及菜单权限 ", notes = "保存角色以及菜单权限")
     @SysLog(descrption = "保存角色以及菜单权限")
     @PostMapping
     @PreAuthorize("hasAuthority('sys:role:add')")
-    public R save(@RequestBody RoleDTO roleDto) {
+    public R save(@RequestBody AddRoleDTO roleDto) {
         return R.ok(roleService.saveRoleMenu(roleDto));
     }
 
@@ -48,7 +49,7 @@ public class SysRoleController {
     @SysLog(descrption = "更新角色以及菜单权限")
     @PutMapping
     @PreAuthorize("hasAuthority('sys:role:update')")
-    public R update(@RequestBody RoleDTO roleDto) {
+    public R update(@RequestBody EditRoleDTO roleDto) {
         return R.ok(roleService.updateRoleMenu(roleDto));
     }
 

@@ -9,7 +9,7 @@ module.exports = {
     proxyTable: {
       '/pre': {
         target: 'http://127.0.0.1:8008', // 测试地址
-        // target: 'http://fb.jsyc11.com',//正式
+        // target: 'http://***',//正式
         changeOrigin: true, // 是否跨域
         pathRewrite: {
           '^/pre': '/project' // 测试库,

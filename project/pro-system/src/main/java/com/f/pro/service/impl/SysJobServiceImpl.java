@@ -12,7 +12,6 @@ import com.f.pro.domain.SysJob;
 import com.f.pro.mapper.SysJobMapper;
 import com.f.pro.service.ISysDeptService;
 import com.f.pro.service.ISysJobService;
-import com.f.pro.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,6 @@ import java.util.stream.Collectors;
 public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJob> implements ISysJobService {
     @Autowired
     private ISysDeptService deptService;
-    @Autowired
-    private ISysUserService userService;
 
     @Override
     public IPage<SysJob> selectJobList(int page, int pageSize, String jobName) {

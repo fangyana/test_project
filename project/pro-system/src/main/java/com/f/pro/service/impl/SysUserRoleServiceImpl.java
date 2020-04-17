@@ -16,7 +16,6 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         return super.save(entity);
     }
 
-
     @Override
     public List<SysUserRole> selectUserRoleListByUserId(Integer userId) {
         return baseMapper.selectUserRoleListByUserId(userId);

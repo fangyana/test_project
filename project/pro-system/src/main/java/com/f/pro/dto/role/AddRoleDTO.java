@@ -8,10 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class RoleDTO implements Serializable {
+public class AddRoleDTO implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ApiModelProperty(value = "角色id")
-    private Integer roleId;
+
     @ApiModelProperty(value = "角色名称")
     private String roleName;
     @ApiModelProperty(value = "角色标识")

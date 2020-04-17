@@ -3,7 +3,8 @@ package com.f.pro.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.f.pro.domain.SysMenu;
 import com.f.pro.domain.SysRole;
-import com.f.pro.dto.role.RoleDTO;
+import com.f.pro.dto.role.AddRoleDTO;
+import com.f.pro.dto.role.EditRoleDTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface ISysRoleService extends IService<SysRole> {
      * @param dto
      * @return
      */
-    boolean saveRoleMenu(RoleDTO dto);
+    boolean saveRoleMenu(AddRoleDTO dto);
 
     /**
      * 更新角色和菜单
@@ -24,7 +25,7 @@ public interface ISysRoleService extends IService<SysRole> {
      * @param dto
      * @return
      */
-    boolean updateRoleMenu(RoleDTO dto);
+    boolean updateRoleMenu(EditRoleDTO dto);
 
     /**
      * 根据主键删除角色

@@ -10,7 +10,7 @@ import com.f.pro.domain.SysUser;
 import com.f.pro.dto.user.RegisterUserDTO;
 import com.f.pro.security.code.img.CaptchaUtil;
 import com.f.pro.security.code.sms.service.SmsCodeService;
-import com.f.pro.security.swagger.PublicApi;
+import com.f.pro.swagger.PublicApi;
 import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysUserService;
 import io.swagger.annotations.Api;

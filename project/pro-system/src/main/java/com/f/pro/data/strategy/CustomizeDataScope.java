@@ -1,7 +1,7 @@
 package com.f.pro.data.strategy;
 
 import com.f.pro.data.enums.DataScopeTypeEnum;
-import com.f.pro.dto.role.RoleDTO;
+import com.f.pro.dto.role.AddRoleDTO;
 import com.f.pro.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class CustomizeDataScope implements AbstractDataScopeHandler {
     private ISysDeptService deptService;
 
     @Override
-    public List<Integer> getDeptIds(RoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
+    public List<Integer> getDeptIds(AddRoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
         List<Integer> roleDeptIds = roleDto.getRoleDepts();
         List<Integer> ids = new ArrayList<>();
         for (Integer deptId : roleDeptIds) {

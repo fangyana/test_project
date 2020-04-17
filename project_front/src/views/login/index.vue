@@ -168,7 +168,7 @@ export default {
       this.loginForm.code = ''
       this.loginForm.t = new Date().getTime()
       // 正式地址
-      // this.src = 'http://fb.jsyc11.com/api/captcha.jpg?t=' + this.loginForm.t
+      // this.src = 'http://***/captcha.jpg?t=' + this.loginForm.t
       // 测试地址
       this.src = 'http://127.0.0.1:8008/project/captcha.jpg?t=' + this.loginForm.t
     },
