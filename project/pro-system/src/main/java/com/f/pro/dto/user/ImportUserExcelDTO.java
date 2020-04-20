@@ -17,7 +17,7 @@ import java.sql.Date;
 @ApiModel
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ImportUserExcelDto {
+public class ImportUserExcelDTO {
 
     @ExcelProperty(value = {"姓名"})
     private String realName;

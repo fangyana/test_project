@@ -79,14 +79,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (StringUtils.isEmpty(passWord)) passWord = "123456";
         sysUser.setPassword(ProUtil.encode(passWord));
         this.save(sysUser);
-        List<SysUserRole> userRoles = userDto.getRoleList().stream().map(item -> {
-            SysUserRole sysUserRole = new SysUserRole();
-            sysUserRole.setRoleId(item);
-            sysUserRole.setUserId(sysUser.getUserId());
-            return sysUserRole;
-        }).collect(Collectors.toList());
-
-        return userRoleService.saveBatch(userRoles);
+        return buildUserRole(userDto.getRoleList(), sysUser.getUserId());
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -98,13 +91,23 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (!StringUtils.isEmpty(userDto.getPassword())) sysUser.setPassword(ProUtil.encode(userDto.getPassword()));
         baseMapper.updateById(sysUser);
         userRoleService.remove(Wrappers.<SysUserRole>lambdaQuery().eq(SysUserRole::getUserId, sysUser.getUserId()));
-        List<SysUserRole> userRoles = userDto.getRoleList().stream().map(item -> {
+        return buildUserRole(userDto.getRoleList(), sysUser.getUserId());
+    }
+
+    /**
+     * 构建保存用户和角色的关联关系
+     *
+     * @param roleList
+     * @param userId
+     * @return
+     */
+    private boolean buildUserRole(List<Integer> roleList, Integer userId) {
+        List<SysUserRole> userRoles = roleList.stream().map(item -> {
             SysUserRole sysUserRole = new SysUserRole();
             sysUserRole.setRoleId(item);
-            sysUserRole.setUserId(sysUser.getUserId());
+            sysUserRole.setUserId(userId);
             return sysUserRole;
         }).collect(Collectors.toList());
-
         return userRoleService.saveBatch(userRoles);
     }
 
@@ -147,7 +150,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public boolean restPass(Integer userId) {
-        return baseMapper.updateById(new SysUser().setPassword("123456").setUserId(userId)) > 0;
+        return baseMapper.updateById(new SysUser().setPassword(ProUtil.encode("123456")).setUserId(userId)) > 0;
     }
 
     @Override
@@ -287,6 +290,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         LoginVo vo = new LoginVo();
         vo.setUserId(sysUser.getUserId());
         SysDept sysDept = deptService.getById(sysUser.getDeptId());
+        if (!sysDept.getDeptType().equals("2")) throw new BaseException("当前账户无权限登录该设备");
         vo.setDeptId(sysUser.getDeptId());
         vo.setDeptName(sysDept.getName());
         return vo;
