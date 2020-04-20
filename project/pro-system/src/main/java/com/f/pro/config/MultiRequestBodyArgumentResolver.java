@@ -14,7 +14,10 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,7 +27,7 @@ import java.util.Set;
  */
 public class MultiRequestBodyArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private static final String JSONBODY_ATTRIBUTE = "JSON_REQUEST_BODY";
+    private static final String JSON_BODY_ATTRIBUTE = "JSON_REQUEST_BODY";
 
     /**
      * 设置支持的方法参数类型
@@ -69,15 +72,15 @@ public class MultiRequestBodyArgumentResolver implements HandlerMethodArgumentRe
         Class<?> parameterType = parameter.getParameterType();
         // 通过注解的value或者参数名解析，能拿到value进行解析
         if (value != null) {
-            //基本类型
-            if (parameterType.isPrimitive())
+            if (parameterType.isPrimitive()) //基本类型
                 return parsePrimitive(parameterType.getName(), value);
-            // 基本类型包装类
-            if (isBasicDataTypes(parameterType)) {
+
+            if (isBasicDataTypes(parameterType)) {// 基本类型包装类
                 return parseBasicTypeWrapper(parameterType, value);
-                // 字符串类型
-            } else if (parameterType == String.class) {
+            } else if (parameterType == String.class) {// 字符串类型
                 return value.toString();
+            } else if (parameterType == List.class) {// 是不是list对象
+                return parseListTypeWrapper(parameterType, value, parameter);
             }
             // 其他复杂对象
             return JSON.parseObject(value.toString(), parameterType);
@@ -203,18 +206,39 @@ public class MultiRequestBodyArgumentResolver implements HandlerMethodArgumentRe
     }
 
     /**
+     * 方法名: parseListTypeWrapper<br/>
+     * 描述: List类型时转成对应的實列对象<br/>
+     * 参数: @param parameterType
+     * 参数: @param value
+     * 参数: @param parameter
+     * 参数: @return <br/>
+     * 返回类型: Object <br/>
+     * 异常：
+     */
+    private Object parseListTypeWrapper(Class<?> parameterType, Object value, MethodParameter parameter) {
+        Type type = parameter.getGenericParameterType();
+        if (type instanceof ParameterizedType) {
+            ParameterizedType pt = (ParameterizedType) type;
+            for (Type arg : pt.getActualTypeArguments()) {
+                parameterType = (Class<?>) arg;
+            }
+        }
+        return JSONObject.parseArray(value.toString(), parameterType);
+    }
+
+    /**
      * 获取请求体JSON字符串
      */
     private String getRequestBody(NativeWebRequest webRequest) {
         HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
 
         // 有就直接获取
-        String jsonBody = (String) webRequest.getAttribute(JSONBODY_ATTRIBUTE, NativeWebRequest.SCOPE_REQUEST);
+        String jsonBody = (String) webRequest.getAttribute(JSON_BODY_ATTRIBUTE, NativeWebRequest.SCOPE_REQUEST);
         // 没有就从请求中读取
         if (jsonBody == null) {
             try {
                 jsonBody = IOUtils.toString(servletRequest.getReader());
-                webRequest.setAttribute(JSONBODY_ATTRIBUTE, jsonBody, NativeWebRequest.SCOPE_REQUEST);
+                webRequest.setAttribute(JSON_BODY_ATTRIBUTE, jsonBody, NativeWebRequest.SCOPE_REQUEST);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
