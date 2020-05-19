@@ -303,6 +303,13 @@
             <version>6.5.4</version>
         </dependency>
 
+        <!--引入AOP相应的注解-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
