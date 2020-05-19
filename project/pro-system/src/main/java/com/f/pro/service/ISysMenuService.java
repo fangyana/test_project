@@ -2,12 +2,16 @@ package com.f.pro.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.f.pro.domain.SysMenu;
+import com.f.pro.dto.menu.AddMenuDTO;
 import com.f.pro.dto.menu.EditMenuDTO;
 
 import java.io.Serializable;
 import java.util.List;
 
 public interface ISysMenuService extends IService<SysMenu> {
+
+    boolean save(AddMenuDTO dto);
+
     /**
      * 更新菜单信息
      *
@@ -27,19 +31,24 @@ public interface ISysMenuService extends IService<SysMenu> {
     /**
      * 根据用户id查找菜单树
      *
+     * @param uid
      * @return
      */
     List<SysMenu> selectMenuTree(Integer uid);
 
     /**
-     * @Author 李号东
-     * @Description 根据父id查询菜单
-     * @Date 18:43 2019-05-12
-     **/
+     * 根据父id查询菜单
+     *
+     * @param parentId
+     * @return
+     */
     SysMenu getMenuById(Integer parentId);
 
     /**
-     * @Description 根据用户id查询权限
-     **/
+     * 根据用户id查询权限
+     *
+     * @param userId
+     * @return
+     */
     List<String> findPermsByUserId(Integer userId);
 }

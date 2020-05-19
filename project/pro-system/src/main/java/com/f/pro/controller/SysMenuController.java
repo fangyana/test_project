@@ -1,7 +1,6 @@
 package com.f.pro.controller;
 
 import com.f.pro.common.util.R;
-import com.f.pro.domain.SysMenu;
 import com.f.pro.dto.menu.AddMenuDTO;
 import com.f.pro.dto.menu.EditMenuDTO;
 import com.f.pro.log.annotation.SysLog;
@@ -9,16 +8,12 @@ import com.f.pro.security.domaim.ProSecurityUser;
 import com.f.pro.security.util.ProUtil;
 import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysMenuService;
-import com.f.pro.vo.MenuVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(tags = "5.菜单信息接口对接控制器")
 @RestController
@@ -33,10 +28,7 @@ public class SysMenuController {
     @SysLog(descrption = "添加菜单")
     @PostMapping
     public R save(@RequestBody AddMenuDTO dto) {
-        SysMenu menu = new SysMenu();
-        BeanUtils.copyProperties(dto, menu);
-        menu.setCreateBy(SecurityUtil.getUser().getUserId());
-        return R.ok(menuService.save(menu));
+        return R.ok(menuService.save(dto));
     }
 
     @ApiOperation(value = "获取当前登录用户的菜单树", notes = "获取菜单树")
@@ -72,9 +64,9 @@ public class SysMenuController {
     @ApiOperation(value = "获取路由", notes = "获取路由")
     @GetMapping("/getRouters")
     public R getRouters() {
-        ProSecurityUser securityUser = SecurityUtil.getUser();
-        List<MenuVo> menuVos = ProUtil.buildMenus(menuService.selectMenuTree(securityUser.getUserId()));
-        return R.ok(ProUtil.buildMenus(menuService.selectMenuTree(securityUser.getUserId())));
+//        ProSecurityUser securityUser = SecurityUtil.getUser();
+//        List<MenuVo> menuVos = ProUtil.buildMenus(menuService.selectMenuTree(securityUser.getUserId()));
+        return R.ok(ProUtil.buildMenus(menuService.selectMenuTree(SecurityUtil.getUser().getUserId())));
     }
 
 }

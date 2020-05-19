@@ -34,12 +34,6 @@ public class SysUserController {
     @Autowired
     private EmailUtil emailUtil;
 
-    /**
-     * 保存用户包括角色和部门
-     *
-     * @param userDto
-     * @return
-     */
     @ApiOperation(value = "保存用户包括角色和部门", notes = "保存用户包括角色和部门")
     @SysLog(descrption = "保存用户包括角色和部门")
     @PostMapping
@@ -48,15 +42,7 @@ public class SysUserController {
         return R.ok(userService.insertUser(userDto, file));
     }
 
-
-    /**
-     * 获取用户列表集合
-     *
-     * @param page
-     * @param userDTO
-     * @return
-     */
-    @ApiOperation(value = "查询用户集合", notes = "查询用户集合")
+    @ApiOperation(value = "查询用户分页集合", notes = "查询用户集合")
     @SysLog(descrption = "查询用户集合")
     @GetMapping
     @PreAuthorize("hasAuthority('sys:user:view')")
@@ -64,12 +50,6 @@ public class SysUserController {
         return R.ok(userService.getUsersWithRolePage(page, userDTO));
     }
 
-    /**
-     * 更新用户包括角色和部门
-     *
-     * @param userDto
-     * @return
-     */
     @ApiOperation(value = "更新用户包括角色和部门", notes = "更新用户包括角色和部门")
     @SysLog(descrption = "更新用户包括角色和部门")
     @PutMapping
@@ -78,12 +58,6 @@ public class SysUserController {
         return R.ok(userService.updateUser(userDto, file));
     }
 
-    /**
-     * 删除用户包括角色和部门
-     *
-     * @param userId
-     * @return
-     */
     @ApiOperation(value = "根据用户id删除用户包括角色和部门", notes = "根据用户id删除用户包括角色和部门")
     @SysLog(descrption = "根据用户id删除用户包括角色和部门")
     @DeleteMapping("/{userId}")
@@ -94,13 +68,6 @@ public class SysUserController {
         return R.ok(userService.removeUser(userId));
     }
 
-
-    /**
-     * 重置密码
-     *
-     * @param userId
-     * @return
-     */
     @ApiOperation(value = "重置密码", notes = "重置密码(默认为123456)")
     @SysLog(descrption = "重置密码")
     @PutMapping("/{userId}")
@@ -109,12 +76,6 @@ public class SysUserController {
         return R.ok(userService.restPass(userId));
     }
 
-
-    /**
-     * 获取个人信息
-     *
-     * @return
-     */
     @ApiOperation(value = "获取个人信息", notes = "获取个人信息")
     @SysLog(descrption = "获取个人信息")
     @GetMapping("/info")
@@ -122,11 +83,6 @@ public class SysUserController {
         return R.ok(userService.findByUserInfoName(SecurityUtil.getUser().getUsername()));
     }
 
-    /**
-     * 修改密码
-     *
-     * @return
-     */
     @ApiOperation(value = "修改当前登录用户密码", notes = "修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "oldPass", value = "旧密码", required = true, dataType = "String"),
@@ -149,12 +105,6 @@ public class SysUserController {
         return R.ok(userService.updateUserInfo(user));
     }
 
-    /**
-     * 检测用户名是否存在 避免重复
-     *
-     * @param userName
-     * @return
-     */
     @ApiOperation(value = "检测用户名是否存在", notes = "检测用户名是否存在")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "userId", value = "用户id", required = false, dataType = "String"),
@@ -178,11 +128,6 @@ public class SysUserController {
         return R.ok();
     }
 
-    /**
-     * 修改密码
-     *
-     * @return
-     */
     @SysLog(descrption = "修改邮箱")
     @PutMapping("updateEmail")
     @PreAuthorize("hasAuthority('sys:user:updateEmail')")
@@ -203,6 +148,5 @@ public class SysUserController {
         user.setEmail(mail);
         return R.ok(userService.updateUserInfo(user));
     }
-
 
 }

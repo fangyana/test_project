@@ -27,13 +27,6 @@ public class AppController {
     @Autowired
     private ISysUserService userService;
 
-    /**
-     * 登录接口
-     *
-     * @param username
-     * @param password
-     * @return
-     */
 //    @ApiOperation(value = "登录接口", notes = "设备登录")
     @PublicApi(value = "登录接口", notes = "设备登录")
     @ApiImplicitParams({

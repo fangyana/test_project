@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.f.pro.common.constant.MenuConstant;
 import com.f.pro.common.exception.BaseException;
 import com.f.pro.domain.SysMenu;
+import com.f.pro.dto.menu.AddMenuDTO;
 import com.f.pro.dto.menu.EditMenuDTO;
 import com.f.pro.mapper.SysMenuMapper;
 import com.f.pro.security.util.ProUtil;
+import com.f.pro.security.util.SecurityUtil;
 import com.f.pro.service.ISysMenuService;
 import com.f.pro.service.ISysRoleMenuService;
 import org.springframework.beans.BeanUtils;
@@ -27,7 +29,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     private ISysRoleMenuService roleMenuService;
 
     @Override
-    public boolean save(SysMenu sysMenu) {
+    public boolean save(AddMenuDTO dto) {
+        SysMenu sysMenu = new SysMenu();
+        BeanUtils.copyProperties(dto, sysMenu);
+        sysMenu.setCreateBy(SecurityUtil.getUser().getUserId());
         // 菜单校验
         verifyForm(sysMenu);
         return super.save(sysMenu);
