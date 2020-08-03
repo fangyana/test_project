@@ -1,4 +1,4 @@
-package com.f.pro.common.util;
+package com.f.pro.data;
 
 /**
  * @Description
