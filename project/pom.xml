@@ -41,7 +41,7 @@
         <commons-net>3.5</commons-net>
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <swagger2-ui>2.9.2</swagger2-ui>
-        <guava>28.2-jre</guava>
+        <guava>29.0-jre</guava>
         <jackson-datatype-jsr310>2.9.7</jackson-datatype-jsr310>
     </properties>
 
