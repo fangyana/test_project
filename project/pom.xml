@@ -37,7 +37,7 @@
         <fastdfs-client-java.version>1.27.0.0</fastdfs-client-java.version>
 
         <ali-easyexcel>2.1.1</ali-easyexcel>
-        <httpclient>4.5.6</httpclient>
+        <httpclient>4.5.13</httpclient>
         <commons-net>3.5</commons-net>
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <swagger2-ui>2.9.2</swagger2-ui>
